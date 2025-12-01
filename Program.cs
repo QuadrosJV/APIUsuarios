@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
-// --------------------------------------------------------------------------------
+
 // 1. Configuração de Serviços (Dependency Injection - DI)
-// --------------------------------------------------------------------------------
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 1.1 Configuração do Entity Framework Core e SQLite (Persistência)
@@ -36,9 +36,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<UsuarioCreateDtoValidator>(
 // Adicionei o OpenAPI para documentação e testes da API.
 builder.Services.AddOpenApi();
 
-// --------------------------------------------------------------------------------
+
 // 2. Criação do Aplicativo e Pipeline
-// --------------------------------------------------------------------------------
+
 var app = builder.Build();
 
 // 3. Configuração do Pipeline de Requisição HTTP
@@ -85,9 +85,9 @@ app.UseExceptionHandler(exceptionHandlerApp =>
     });
 });
 
-// --------------------------------------------------------------------------------
+
 // 4. Mapeamento dos Endpoints (Minimal APIs - Operações CRUD)
-// --------------------------------------------------------------------------------
+
 
 var usuariosApi = app.MapGroup("/usuarios").WithTags("Usuários"); // Criei o agrupamento base /usuarios
 
@@ -165,9 +165,9 @@ usuariosApi.MapDelete("/{id:int}", async (int id, IUsuarioService service, Cance
 .Produces(StatusCodes.Status204NoContent)
 .Produces(StatusCodes.Status404NotFound);
 
-// --------------------------------------------------------------------------------
+
 // 5. Execução
-// --------------------------------------------------------------------------------
+
 app.Run();
 
 // Classe parcial necessária para o uso do 'app.MapOpenApi()' no .NET 8/9.

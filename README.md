@@ -1,59 +1,59 @@
 # APIUsuarios
 
-## Overview
-APIUsuarios is a web application designed to manage user entities. It provides a RESTful API for creating, reading, updating, and deleting user information.
+## Visão Geral
+APIUsuarios é uma aplicação web projetada para gerenciar entidades de usuários. Ela fornece uma API RESTful para criar, ler, atualizar e deletar informações de usuários.
 
-## Project Structure
-The project is organized into several folders, each serving a specific purpose:
+## Estrutura do Projeto
+O projeto está organizado em várias pastas, cada uma servindo a um propósito específico:
 
-- **Domain**: Contains the core entities of the application.
-  - **Entities**: Defines the `Usuario` class representing a user.
+- **Domain**: Contém as entidades principais da aplicação.
+  - **Entities**: Define a classe `Usuario`, representando um usuário.
 
-- **Application**: Contains the business logic and data transfer objects (DTOs).
-  - **DTOs**: Classes for transferring user data.
-    - `UsuarioCreateDto`: Used for creating new users.
-    - `UsuarioReadDto`: Used for reading user data.
-    - `UsuarioUpdateDto`: Used for updating existing users.
-  - **Interfaces**: Defines contracts for repositories and services.
-    - `IUsuarioRepository`: Interface for user data access methods.
-    - `IUsuarioService`: Interface for user business logic methods.
-  - **Services**: Implements the business logic for user management.
-    - `UsuarioService`: Contains methods for user operations.
-  - **Validators**: Validates DTOs to ensure data integrity.
-    - `UsuarioCreateDtoValidator`: Validates user creation data.
-    - `UsuarioUpdateDtoValidator`: Validates user update data.
+- **Application**: Contém a lógica de negócios e os objetos de transferência de dados (DTOs).
+  - **DTOs**: Classes para transferir dados de usuários.
+    - `UsuarioCreateDto`: Usado para criar novos usuários.
+    - `UsuarioReadDto`: Usado para ler dados de usuários.
+    - `UsuarioUpdateDto`: Usado para atualizar usuários existentes.
+  - **Interfaces**: Define contratos para repositórios e serviços.
+    - `IUsuarioRepository`: Interface para métodos de acesso a dados de usuários.
+    - `IUsuarioService`: Interface para métodos de lógica de negócios de usuários.
+  - **Services**: Implementa a lógica de negócios para gerenciamento de usuários.
+    - `UsuarioService`: Contém métodos para operações de usuários.
+  - **Validators**: Valida os DTOs para garantir a integridade dos dados.
+    - `UsuarioCreateDtoValidator`: Valida os dados de criação de usuários.
+    - `UsuarioUpdateDtoValidator`: Valida os dados de atualização de usuários.
 
-- **Infrastructure**: Contains the data access layer.
-  - **Persistence**: Defines the database context.
-    - `AppDbContext`: Manages database connections and user entities.
-  - **Repositories**: Implements data access logic.
-    - `UsuarioRepository`: Interacts with the database for user operations.
+- **Infrastructure**: Contém a camada de acesso a dados.
+  - **Persistence**: Define o contexto do banco de dados.
+    - `AppDbContext`: Gerencia conexões com o banco de dados e entidades de usuários.
+  - **Repositories**: Implementa a lógica de acesso a dados.
+    - `UsuarioRepository`: Interage com o banco de dados para operações de usuários.
 
-- **Migrations**: Contains automatically generated migration files for database schema changes.
+- **Migrations**: Contém arquivos de migração gerados automaticamente para alterações no esquema do banco de dados.
 
-## Setup Instructions
-1. Clone the repository to your local machine.
-2. Navigate to the project directory.
-3. Restore the project dependencies using the command:
+## Instruções de Configuração
+1. Clone o repositório para sua máquina local.
+2. Navegue até o diretório do projeto.
+3. Restaure as dependências do projeto usando o comando:
    ```
    dotnet restore
    ```
-4. Update the `appsettings.json` file with your database connection string.
-5. Run the application using the command:
+4. Atualize o arquivo `appsettings.json` com sua string de conexão do banco de dados.
+5. Execute a aplicação usando o comando:
    ```
    dotnet run
    ```
 
-## Usage
-Once the application is running, you can access the API endpoints to manage users. The following endpoints are available:
+## Uso
+Uma vez que a aplicação esteja em execução, você pode acessar os endpoints da API para gerenciar usuários. Os seguintes endpoints estão disponíveis:
 
-- `POST /usuarios`: Create a new user.
-- `GET /usuarios/{id}`: Retrieve a user by ID.
-- `PUT /usuarios/{id}`: Update an existing user.
-- `DELETE /usuarios/{id}`: Delete a user by ID.
+- `POST /usuarios`: Criar um novo usuário.
+- `GET /usuarios/{id}`: Recuperar um usuário pelo ID.
+- `PUT /usuarios/{id}`: Atualizar um usuário existente.
+- `DELETE /usuarios/{id}`: Deletar um usuário pelo ID.
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
+## Contribuindo
+Contribuições são bem-vindas! Por favor, envie um pull request ou abra uma issue para quaisquer melhorias ou correções de bugs.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+## Licença
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
