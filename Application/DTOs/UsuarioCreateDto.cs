@@ -1,5 +1,10 @@
-public class UsuarioCreateDto
+namespace APIUsuarios.Application.DTOs
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public record UsuarioCreateDto(
+        string Nome,
+        string Email,
+        string Senha, // O DTO de criação PRECISA da senha
+        DateTime DataNascimento,
+        string? Telefone
+    );
 }

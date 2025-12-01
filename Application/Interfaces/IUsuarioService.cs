@@ -1,11 +1,15 @@
-namespace Application.Interfaces
+using APIUsuarios.Application.DTOs;
+
+namespace APIUsuarios.Application.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<UsuarioReadDto> CreateUsuario(UsuarioCreateDto usuarioCreateDto);
-        Task<UsuarioReadDto> GetUsuario(int id);
-        Task<IEnumerable<UsuarioReadDto>> GetAllUsuarios();
-        Task<UsuarioReadDto> UpdateUsuario(int id, UsuarioUpdateDto usuarioUpdateDto);
-        Task<bool> DeleteUsuario(int id);
+        // Contrato do Service Pattern: define as operações de negócio.
+        Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct);
+        Task<UsuarioReadDto?> ObterAsync(int id, CancellationToken ct);
+        Task<UsuarioReadDto> CriarAsync(UsuarioCreateDto dto, CancellationToken ct);
+        Task<UsuarioReadDto?> AtualizarAsync(int id, UsuarioUpdateDto dto, CancellationToken ct);
+        Task<bool> RemoverAsync(int id, CancellationToken ct); // Vamos implementar o Soft Delete aqui!
+        Task<bool> EmailJaCadastradoAsync(string email, CancellationToken ct);
     }
 }
