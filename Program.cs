@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
 
+
+
 // 1. Configuração de Serviços (Dependency Injection - DI)
 
 var builder = WebApplication.CreateBuilder(args);
@@ -115,17 +117,23 @@ usuariosApi.MapPost("/", async (UsuarioCreateDto dto, IUsuarioService service, I
 {
     // Validação do DTO (formato, idade, etc.) usando o FluentValidation.
     var validationResult = await validator.ValidateAsync(dto, ct);
+    
     if (!validationResult.IsValid)
     {
-        return Results.ValidationProblem(validationResult.ToDictionary()); // 400 Bad Request
+        //Usa Results.ValidationProblem para retornar o 400 Bad Request
+        return Results.ValidationProblem(validationResult.ToDictionary()); 
     }
+
+    // Se a validação passar, o código continua e pode chamar o Service...
     
     // Chamo o Service para executar a lógica de negócio e persistência.
     var createdUsuario = await service.CriarAsync(dto, ct);
     
-    // Retorna 201 Created (Recurso criado com sucesso).
+    // Retorna 201 Created
     return Results.Created($"/usuarios/{createdUsuario.Id}", createdUsuario);
 })
+// ...
+    
 .WithName("CriarUsuario")
 .Produces<UsuarioReadDto>(StatusCodes.Status201Created)
 .Produces(StatusCodes.Status400BadRequest)

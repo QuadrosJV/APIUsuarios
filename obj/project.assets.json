@@ -3261,11 +3261,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\João\\Desktop\\backEND\\api-usuarios-as-[João Vitor Dos Santos Quadros]\\[api-usuarios-as-[Joao Vitor Dos Santos Quadros]\\APIUsuarios\\APIUsuarios.csproj",
+      "projectUniqueName": "C:\\Users\\João\\Desktop\\backEND\\APIUsuarios\\APIUsuarios.csproj",
       "projectName": "APIUsuarios",
-      "projectPath": "C:\\Users\\João\\Desktop\\backEND\\api-usuarios-as-[João Vitor Dos Santos Quadros]\\[api-usuarios-as-[Joao Vitor Dos Santos Quadros]\\APIUsuarios\\APIUsuarios.csproj",
+      "projectPath": "C:\\Users\\João\\Desktop\\backEND\\APIUsuarios\\APIUsuarios.csproj",
       "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\João\\Desktop\\backEND\\api-usuarios-as-[João Vitor Dos Santos Quadros]\\[api-usuarios-as-[Joao Vitor Dos Santos Quadros]\\APIUsuarios\\obj\\",
+      "outputPath": "C:\\Users\\João\\Desktop\\backEND\\APIUsuarios\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\João\\AppData\\Roaming\\NuGet\\NuGet.Config"

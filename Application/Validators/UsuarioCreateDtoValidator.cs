@@ -21,10 +21,8 @@ namespace APIUsuarios.Application.Validators
             // Email: Formato válido e, o mais importante, ÚNICO!
             RuleFor(u => u.Email)
                 .NotEmpty().WithMessage("O Email é obrigatório.")
-                .EmailAddress().WithMessage("O Email está em um formato inválido.")
+                .EmailAddress().WithMessage("O Email está em um formato inválido.");
                 // Validação Assíncrona: checamos no banco se o e-mail já existe.
-                .MustAsync(async (email, ct) => !await _repository.EmailExistsAsync(email, ct))
-                .WithMessage("O Email informado já está cadastrado."); // Requisito 409
 
             // Senha: Mínimo 6 caracteres.
             RuleFor(u => u.Senha)

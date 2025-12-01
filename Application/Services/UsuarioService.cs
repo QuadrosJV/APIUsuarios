@@ -16,28 +16,41 @@ namespace APIUsuarios.Application.Services
             _repository = repository;
         }
 
-        public async Task<UsuarioReadDto> CriarAsync(UsuarioCreateDto dto, CancellationToken ct)
-        {
-            // Mapeamento de DTO para a Entidade de Domínio
-            var usuario = new Usuario
-            {
-                Nome = dto.Nome,
-                Email = dto.Email,
-                Senha = dto.Senha, 
-                DataNascimento = dto.DataNascimento,
-                Telefone = dto.Telefone,
-                // DataCriacao e Ativo são defaults na Entidade
-            };
+        // UsuarioService.cs
 
-            await _repository.AddAsync(usuario, ct);
-            await _repository.SaveChangesAsync(ct);
+public async Task<UsuarioReadDto> CriarAsync(UsuarioCreateDto dto, CancellationToken ct)
+{
+    // NOVO: 1. CHECAGEM DE DUPLICIDADE (LÓGICA DE NEGÓCIO para 409)
+    // Usamos o método auxiliar que chama o repositório
+    var emailExiste = await EmailJaCadastradoAsync(dto.Email, ct);
+    
+    if (emailExiste)
+    {
+        // Lança a exceção. O middleware no Program.cs a transforma em 409.
+        throw new ApplicationException($"O Email informado '{dto.Email}' já está cadastrado.");
+    }
+    
+    // 2. Mapeamento de DTO para a Entidade de Domínio
+    var usuario = new Usuario
+    {
+        Nome = dto.Nome,
+        Email = dto.Email,
+        Senha = dto.Senha, 
+        DataNascimento = dto.DataNascimento,
+        Telefone = dto.Telefone,
+        Ativo = true, // Garantindo que o novo usuário é ativo
+        // DataCriacao e Ativo são defaults na Entidade
+    };
 
-            // Retorna o DTO de Leitura, sem a senha
-            return new UsuarioReadDto(
-                usuario.Id, usuario.Nome, usuario.Email, usuario.DataNascimento,
-                usuario.Telefone, usuario.Ativo, usuario.DataCriacao
-            );
-        }
+    await _repository.AddAsync(usuario, ct);
+    await _repository.SaveChangesAsync(ct);
+
+    // 3. Retorna o DTO de Leitura, sem a senha
+    return new UsuarioReadDto(
+        usuario.Id, usuario.Nome, usuario.Email, usuario.DataNascimento,
+        usuario.Telefone, usuario.Ativo, usuario.DataCriacao
+    );
+}
         
         public async Task<UsuarioReadDto?> AtualizarAsync(int id, UsuarioUpdateDto dto, CancellationToken ct)
         {
