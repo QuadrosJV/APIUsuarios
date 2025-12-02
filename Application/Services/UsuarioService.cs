@@ -34,7 +34,7 @@ public async Task<UsuarioReadDto> CriarAsync(UsuarioCreateDto dto, CancellationT
     var usuario = new Usuario
     {
         Nome = dto.Nome,
-        Email = dto.Email,
+        Email = dto.Email.ToLower(),
         Senha = dto.Senha, 
         DataNascimento = dto.DataNascimento,
         Telefone = dto.Telefone,
